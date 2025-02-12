@@ -5,7 +5,7 @@ import os
 from datetime import datetime, timedelta
 from time import mktime
 #import igrf2
-from numpy import power, degrees, radians, mat, cos, sin, arctan, sqrt, pi, arctan2, array, transpose, dot, arccos, sign
+from numpy import power, degrees, radians, cos, sin, arctan, sqrt, pi, arctan2, array, transpose, dot, arccos, sign
 import math
 import numpy
 
@@ -36,6 +36,7 @@ def geodetic2ecef(lat, lon, alt):
     return(numpy.array([x, y, z]))
 
 def enu2ecef(lat, lon, alt, e, n, u):
+    
     """NED (north/east/down) to ECEF coordinate system conversion."""
     x, y, z = e, n, u
     lat, lon = radians(lat), radians(lon)
@@ -111,6 +112,10 @@ def az_el_r2geodetic(obs_lat, obs_lon, obs_h, az, el, r):
     if(llh[1] < 0.0):
         llh[1] = llh[1]+360.0
     return(llh)
+
+misa_lat=42.61950
+misa_lon=288.50827
+misa_h=146.0
 
 def test_coord():
     result = geodetic2ecef(69.0,19.0,10.0)
